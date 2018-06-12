@@ -1,0 +1,9 @@
+friend_links:
+  - name: Geewer
+    desc: Geewer
+    link: https://geewer.github.io/
+
+build_tools:
+  - name: Hexo
+    desc: Blog Framework
+    link: https://hexo.io/
