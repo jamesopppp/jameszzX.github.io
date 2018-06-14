@@ -150,8 +150,9 @@ hfc_favicons:
 # Gitalk
 gitTalk:
   clientId: 6360c7ce1d4c3d7a4e1a
-  clientSecret: 73e6528871be63434a54d4de7dc6a6805768ddc6
-  repo: https://github.com/jameszzX/jameszzX.github.io.git
+  clientSecret: 73a2104bb2fc28e1d087c61db337f88d1747e17d
+  repo: jameszzX.github.io
   owner: jameszzX
   admin: 
     - jameszzX
+  id: md5(window.location.pathname)
