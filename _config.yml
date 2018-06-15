@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
-description:
-keywords:
+title: James
+subtitle: James BLOG
+description: 欢迎来到我的博客,这里用于分享自己在日常学习工作生活中遇到有趣的点点滴滴,希望我的只言片语能让进来的你得到帮助,胡言乱语请见谅哟~
+keywords: james, james blog, 前端博客, 詹子贤, 詹子贤的博客, 前端, 程序员, 前端开发, 全栈开发, node.js, javascript
 author: John Doe
 language: zh-cn
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://jamescathy.top/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:

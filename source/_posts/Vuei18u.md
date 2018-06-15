@@ -2,7 +2,7 @@ title: vue-i18n多语言
 cover: https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1528784675227&di=08badf06aca2ef6ac75d64c29852ae5c&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2Fdcc451da81cb39dbec58249fda160924aa18305a.jpg
 author: 
   nick: James
-  link: 
+  link: https://github.com/jameszzX
 subtitle: 最近这段时间因项目需求，需要实现国际化多语言，刚好使用的前端开发框架又是目前大火出自国人尤大神的Vue，所以这篇文章主要抛开原理主要讲述怎么在vue(2.0)上实现多语言切换。
 tags:
      - vue
