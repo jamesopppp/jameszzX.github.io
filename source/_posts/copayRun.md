@@ -1,5 +1,5 @@
 title: window下运行比特币钱包copay
-cover: https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=51941477,2466741739&fm=15&gp=0.jpg
+cover: https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4210717006,877308051&fm=15&gp=0.jpg
 author: 
   nick: James
   link: https://github.com/jameszzX
