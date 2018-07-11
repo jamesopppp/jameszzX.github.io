@@ -7,14 +7,14 @@ subtitle: 教你如何简单的创建一个属于你的ETH钱包
 tags:
      - eth
      - 区块链
-data: 2018-07-10 20:40:05
+data: 2018-07-10 22:40:05
 categories: "eth"
 ---
 前言
 ===
 记录自己摸索ETC钱包的点点滴滴,加油努力!
 
-### ethers js
+### ethers.js
 一个实现以太坊底层实现原理的javascript库
 
 web可以直接引入库
@@ -68,15 +68,19 @@ let password = 'james';
 let send = bip39.mnemonicToSeed(str, password);
 ```
 
-5.使用ethers将种子生成root：
+5.使用ethers将种子生成root主节点：
 ```
 let root = ethers.HDNode.fromSeed(seed);
-
-let privateKey = root2.privateKey;  //私钥
-let publicKey = root2.publicKey;   //公钥
 ```
 
-6.使用ethers将私钥生成ETH钱包:
+6.从主节点生成第一个eth钱包节点：
+```
+var key1 = root.derivePath("m/44'/60'/0'/0/0");  // 推荐路径
+console.log(key1);
+let privateKey = key1.privateKey;  // 私钥
+```
+
+6.使用ethers将私钥生成ETH钱包并获得地址:
 ```
 let wallet = new ethers.Wallet(privateKey);
 console.log("Address: "+ wallet.address);
@@ -93,19 +97,34 @@ let words = "衡 穿 格 已 央 食 守 郑 驱 馏 卸 而";
 let send = bip39.mnemonicToSeed(words,'james');
 ```
 
-2.在ethers使用钱包种子生成root:
+2.在ethers使用钱包种子生成root主节点:
 ```
 let root = ethers.HDNode.fromSeed(send);
 let privateKey = root.privateKey; //得到私钥
 ```
 
-3.用ethers将私钥生成钱包:
+3.利用root生成任意钱包节点:
+```
+var key1 = root.derivePath("m/44'/60'/0'/0/0");
+console.log(key1);
+let privateKey = key1.privateKey;
+```
+
+3.用ethers将私钥生成钱包并获得地址:
 ```
 let wallet = new ethers.Wallet(privateKey);
 console.log("Address: " + wallet.address)
 ```
 
 成功找回钱包啦,注意如果在创建钱包时使用了口令,那么找回时就必须要助记词+密码,缺一不可,短短几行代码让我越发对区块链及虚拟货币感兴趣!~
+
+> 内容参考
+>
+> [分层确定性钱包 HD Wallet 介绍](http://bigshark.club/2017/10/20/intr-hd-wallet/)
+>
+> [数字货币钱包详解(译)](https://juejin.im/post/5ae2942ff265da0b886d23df)
+>
+> [数字货币钱包详解(原文)](https://github.com/ethereumbook/ethereumbook/blob/develop/wallets.asciidoc)
 
 总结
 ---
