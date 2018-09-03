@@ -1,5 +1,5 @@
 title: ETH钱包备份及导入
-cover: http://img5.imgtn.bdimg.com/it/u=2995945462,410559205&fm=26&gp=0.jpg
+cover: http://cdn.huodongxing.com/file/20150815/119E53CF55A897EBBFF01476D68A1A31AE/30653022772234638.jpg
 author: 
   nick: James
   link: https://github.com/jameszzX
