@@ -46,7 +46,7 @@ busuanzi: true
 title: James
 
 # banner显示的子标题
-subtitle: James BLOG
+subtitle: James
 
 # banner显示的简短介绍
 subtitle_desc: Stay hungry. Stay foolish.
@@ -55,7 +55,7 @@ subtitle_desc: Stay hungry. Stay foolish.
 keywords: james, james blog, 前端博客, 詹子贤, 詹子贤的博客, 前端, 程序员, 前端开发, 全栈开发, node.js, javascript
 
 # 博客介绍（同时用于seo）
-description: 欢迎来到我的博客,这里用于分享自己在日常学习工作生活中遇到有趣的点点滴滴,希望我的只言片语能让进来的你得到帮助,胡言乱语请见谅哟~
+description: 欢迎来到James的博客,这里会分享日常学习工作生活中的点点滴滴,希望能让你有所收获~!
 
 # 个人介绍
 introduction: 在普遍的众星之中,高人一等的闪亮显眼!
@@ -89,7 +89,7 @@ author:
   link: https://github.com/jameszzX
 # 用于页面 footer 的站长信息
 about:
-  info: 本站是基于 Hexo 搭建的静态资源博客，主要用于分享日常学习、生活及工作的一些心得总结，欢迎点击右下角订阅 rss。 
+  info: 在普遍的众星之中,高人一等的闪亮显眼。
   address: Guangzhou, Guangdong Province, China
   email: jamessupermail@163.com
 
