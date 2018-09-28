@@ -1,5 +1,5 @@
 title: Css制作波浪流动效果
-cover: https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=858120018,3971428449&fm=26&gp=0.jpg
+cover: https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538113743613&di=e6eba62f85c1ffb50019efd5867eec53&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2018-01-18%2F5a6011b2f20dc.jpg
 author: 
   nick: James
   link: https://github.com/jameszzX
