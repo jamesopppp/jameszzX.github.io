@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><title>vue-i18n多语言 | James</title><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="author" content="John Doe"><meta name="designer" content="minfive"><meta name="keywords" content="james, james blog, 前端博客, 詹子贤, 詹子贤的博客, 前端, 程序员, 前端开发, 全栈开发, node.js, javascript"><meta name="description" content="欢迎来到James的博客,这里会分享日常学习工作生活中的点点滴滴,希望能让你有所收获~!"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=yes"><meta name="mobile-web-app-capable" content="yes"><meta name="robots" content="all"><link rel="canonical" href="https://jamescathy.top/2018/10/01/Vuei18u/index.html"><link rel="icon" type="image/png" href="http://p8i3gdhi6.bkt.clouddn.com/monster.ico" sizes="32x32"><link rel="stylesheet" href="/scss/base/index.css"><link rel="alternate" href="/atom.xml" title="James"><link rel="stylesheet" href="/scss/views/page/post.css"></head><body ontouchstart><div id="page-loading" class="page page-loading" style="background-image:url(http://oo12ugek5.bkt.clouddn.com/blog/images/loader.gif)"></div><div id="page" class="page js-hidden"><header class="page__small-header page__header--small"><nav class="page__navbar"><div class="page__container navbar-container"><a class="page__logo" href="/" title="James" alt="James"><img src="http://p8i3gdhi6.bkt.clouddn.com/monster.ico" alt="James"></a><nav class="page__nav"><ul class="nav__list clearfix"><li class="nav__item"><a href="/" alt="首页" title="首页">首页</a></li><li class="nav__item"><a href="/archives" alt="归档" title="归档">归档</a></li><li class="nav__item"><a href="/about" alt="关于" title="关于">关于</a></li></ul></nav><button class="page__menu-btn" type="button"><i class="iconfont icon-menu"></i></button></div></nav></header><main class="page__container page__main"><div class="page__content"><article class="page__post"><div class="post__cover"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1528784675227&di=08badf06aca2ef6ac75d64c29852ae5c&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2Fdcc451da81cb39dbec58249fda160924aa18305a.jpg" alt="vue-i18n多语言"></div><header class="post__info"><h1 class="post__title">vue-i18n多语言</h1><div class="post__mark"><div class="mark__block"><i class="mark__icon iconfont icon-write"></i><ul class="mark__list clearfix"><li class="mark__item"><a href="https://github.com/jameszzX">James</a></li></ul></div><div class="mark__block"><i class="mark__icon iconfont icon-time"></i><ul class="mark__list clearfix"><li class="mark__item"><span>2018-10-01</span></li></ul></div><div class="mark__block"><i class="mark__icon iconfont icon-tab"></i><ul class="mark__list clearfix"><li class="mark__item"><a href="/tags/vue/">Vue</a></li><li class="mark__item"><a href="/tags/javascript/">Javascript</a></li><li class="mark__item"><a href="/tags/vue-plugin/">Vue-Plugin</a></li></ul></div></div></header><div class="post__content"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近这段时间因项目需求，需要实现国际化多语言，刚好使用的前端开发框架又是目前大火出自国人尤大神的Vue，所以这篇文章主要抛开原理主要讲述怎么在vue(2.0)上实现多语言切换。</p><h3 id="一、寻找解决方案"><a href="#一、寻找解决方案" class="headerlink" title="一、寻找解决方案"></a>一、寻找解决方案</h3><p>由于我主要以vue为技术栈，所以当然寻找基于vue实现的插件，回想起我在浏览一些UI框架的官网时都有看到多语言切换的功能，且在源码里有看到过i18n，没错我们将使用vue-i18n这个国际化插件实现需求(记得随手star哦)：</p><p><img src="http://p8i3gdhi6.bkt.clouddn.com/vuei18n-1.png" alt="i18n"></p><p><img src="http://p8i3gdhi6.bkt.clouddn.com/vuei18n-star.png" alt="i18n2"></p><p>Github：<a href="https://github.com/kazupon/vue-i18n" target="_blank" rel="noopener">click here</a></p><p><i class="icon-hand-point-left"></i></p><p>Documentation： <a href="https://kazupon.github.io/vue-i18n/en/" target="_blank" rel="noopener">click here</a></p><p>适用<span style="color:#ff5151"> Vue.js 2.x </span>以上版本</p><h3 id="二、实践出真理"><a href="#二、实践出真理" class="headerlink" title="二、实践出真理"></a>二、实践出真理</h3><p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526016329035&di=32059ce21b5779a145c8f46b2fb779ce&imgtype=0&src=http%3A%2F%2Fwx4.sinaimg.com%2Forj360%2F915e2ab2gy1fkek4jbsl6j20b40b4gmg.jpg" width="200" height="180" alt="pig1"></p><p>光说有什么用呢，让我们接下来手把手跟着实现吧，let’s go!</p><h4 id="1-开发环境"><a href="#1-开发环境" class="headerlink" title="(1). 开发环境"></a>(1). 开发环境</h4><p>推荐使用<span style="color:#56b277"> vue-cli官方脚手架 </span>搭建vue项目，并将项目启动起来：</p><p><img src="http://p8i3gdhi6.bkt.clouddn.com/vuei18n-cli.png" alt="vue-cli"></p><h4 id="2-安装插件"><a href="#2-安装插件" class="headerlink" title="(2). 安装插件"></a>(2). 安装插件</h4><p>官方文档 Installation：<a href="https://kazupon.github.io/vue-i18n/en/installation.html" target="_blank" rel="noopener">click here</a></p><p>我推荐<span style="color:#ff5151">npm安装包依赖</span>，至于大家用哪种方式引用还是局部引用可以根据喜好选择：</p><blockquote><p>$ npm install vue-i18n</p></blockquote><h4 id="3-实现国际化"><a href="#3-实现国际化" class="headerlink" title="(3). 实现国际化"></a>(3). 实现国际化</h4><p>在目录下<code>main.js</code>文件中配置使用：</p><ol><li>引入vue-i18n</li></ol><pre><code>//main.js
+import Vue from &apos;vue&apos;
+import VueI18n from &apos;vue-i18n&apos;
+
+Vue.use(VueI18n);
+</code></pre><ol start="2"><li>语言资源准备</li></ol><p>一般直接使用：</p><pre><code>const i18n = new VueI18n({
+  locale: &apos;zhCHS&apos;, // 语言标识
+  messages: {
+    en: {
+      home: {
+        hello: &apos;hello&apos;,
+        //...
+      }
+    },
+    zhCHS: {
+      home: {
+        hello: &apos;你好&apos;,
+        //...
+      }
+    }
+  }
+})
+</code></pre><p>但是因为实际项目需要大量语言字段，所以也可以采取引入语言包，这样也比较规范化。</p><p>首先新建目录：</p><p><img src="http://p8i3gdhi6.bkt.clouddn.com/vuei18n-pack.png" alt="目录"></p><p>新建的语言文件可根据需求增加减少,具体语言文件内容:</p><pre><code>//en.js
+module.exports = {
+  home: {
+    hello: &apos;hello&apos;
+  }
+}
+//zhCHS.js
+module.exports = {
+  home: {
+    hello: &apos;你好&apos;
+  }
+}
+</code></pre><p>然后在<code>mian.js</code>中引入</p><pre><code>import LangEn from &apos;./common/lang/en&apos;;
+import LangZhCHS from &apos;./common/lang/zhCHS&apos;;
+
+const i18n = new VueI18n({
+  locale: &apos;zhCHS&apos;, // 默认语言标识
+  messages: {
+    &apos;zhCHS&apos;: LangZhCHS, // 简体中文
+    &apos;en&apos;: LangEn // 英文
+  },
+})
+</code></pre><p>或用CommonJS模块的require引入也一样，这样同等于import操作。</p><pre><code>const i18n = new VueI18n({
+  locale: &apos;zhCHS&apos;, // 语言标识
+  messages: {
+    &apos;zhCHS&apos;: require(&apos;./common/lang/zhCHS&apos;), // 简体中文
+    &apos;en&apos;: require(&apos;./common/lang/en&apos;) // 英文
+  },
+})
+</code></pre><p>最后全局挂载使用i18n：</p><pre><code>new Vue({
+  el: &apos;#app&apos;,
+  i18n,  //挂载i18n
+  render: h =&gt; h(App)
+})
+</code></pre><p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526016933482&di=636d71e67658e0bb826f35d414d701f8&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180421%2F898cb3b0be0041efaef6eba0ba01b1ce.jpeg" width="150" height="140" alt="pig1"><br>至此，已经成功引用i18n了，接下来就直接使用好了。</p><h4 id="4-语法使用"><a href="#4-语法使用" class="headerlink" title="(4).语法使用"></a>(4).语法使用</h4><blockquote><p>HTML中使用语言标记</p></blockquote><pre><code>&lt;p&gt;{{ $t("home.hello") }}&lt;/p&gt;
+</code></pre><blockquote><p>Js中使用语言标记</p></blockquote><pre><code>this.$t(&quot;home.hello&quot;);
+</code></pre><blockquote><p>数据渲染绑定语言标记</p></blockquote><pre><code>&lt;p v-text=&quot;$t(&apos;home.hello&apos;)&quot;&gt;&lt;/p&gt;
+</code></pre><blockquote><p>还有更多用法，比如与计算属性(computed)配合等：</p></blockquote><pre><code>computed: {
+    sayHello() {
+      return this.$t(&quot;home.hello&quot;) + &quot;,&quot; + this.userName;
+    }
+}
+</code></pre><p>因为我们现在设置的默认语言是”zhCHS”，所以显示的是简体中文语言，如果我们要切换语言环境可以调用i18n全局对象属性直接修改：</p><pre><code>this.$i18n.locale = &quot;en&quot;;  //切换成英文语言
+</code></pre><p>下面是一个切换语言的小demo：</p><p><img src="http://p8i3gdhi6.bkt.clouddn.com/toggleLanguage.gif" alt="toggle"></p><p>以上切换语言按钮操作代码如下：</p><pre><code>toggleLanguage() {
+  let locale = this.$i18n.locale;
+  locale === &quot;zhCHS&quot;
+    ? (this.$i18n.locale = &quot;en&quot;)
+    : (this.$i18n.locale = &quot;zhCHS&quot;);
+}
+</code></pre><h3 id="三、进阶使用"><a href="#三、进阶使用" class="headerlink" title="三、进阶使用"></a>三、进阶使用</h3><p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526017271395&di=6af5803af56bdf89334baabc95f9cfe0&imgtype=0&src=http%3A%2F%2Fwww.wed114.cn%2Fjiehun%2Fuploads%2Fallimg%2F170613%2F16433115N-4.jpg" width="150" height="150" alt="thing"></p><p>但是事情好像并没这么简单，要是我设置了英文语言，下次打开它又变成了中文不就尴尬了，所以我们可以利用HTML5的localStorage本地存储去实现我们的目的：</p><pre><code>toggleLanguage() {
+  let that = this;
+  let locale = that.$i18n.locale;
+  if (locale === &quot;zhCHS&quot;) {
+    that.$i18n.locale = &quot;en&quot;;
+    window.localStorage.setItem(&quot;language&quot;, &quot;en&quot;);   //设置localStorage语言标识
+  } else {
+    that.$i18n.locale = &quot;zhCHS&quot;;
+    window.localStorage.setItem(&quot;language&quot;, &quot;zhCHS&quot;);
+  }
+  console.log(window.localStorage.getItem(&quot;language&quot;));
+}
+</code></pre><p>首先切换语言处需做出修改，使设置的语言存在本地存储中，神秘代码如上，然后再于<code>main.js</code>处做出相应修改:</p><pre><code>//main.js
+function getLanguage() {
+  let lang = window.localStorage.getItem(&apos;language&apos;);  //获取语言标识
+  if (lang) {
+    return lang; //如果本地已存在设置,就返回该语言
+  } else {
+    return &apos;zhCHS&apos;; //没有该标识字段就设置默认语言
+  }
+}
+
+const locale = getLanguage();
+
+const i18n = new VueI18n({
+  locale: locale, // 获取的语言标识
+  messages: {
+    &apos;zhCHS&apos;: require(&apos;./common/lang/zhCHS&apos;), // 简体中文
+    &apos;en&apos;: require(&apos;./common/lang/en&apos;) // 英文
+  }
+})
+</code></pre><p>至此，我们已经实现了切换语言，且下次打开该项目后显示的语言仍就是上一次设置的语言，是不是很简单hhh，虽然很简单，但是原理是这样实现的…</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次主要讲的是自己实际工作中遇到多语言切换需求的实现过程，希望能帮到大家，还有很多实现方法，我只是使用了比较简单的一种，也刚好满足我的需求啦，吧啦吧啦谢谢你耐心的看完这篇文章，如果发现不足之处请不要犹豫的说出来，让我们共同进步吧，本人才识疏浅，告辞~</p><p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526017570149&di=0d778cbd177154d73a0e874529d7e4a6&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20161214%2Fe8e7582899384930aa45a2d8542b0df7_th.gif" width="340" height="200" alt="run"></p><div style="margin-top:100px"><p>本文由 <a href="http://www.jamescathy.top" target="_blank" rel="noopener">James</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名</p><div style="margin-top:50px"></div></div><div class="post-announce">感谢您的阅读，本文由 <a href="https://jamescathy.top">James</a> 版权所有。如若转载，请注明出处：James（<a href="https://jamescathy.top/2018/10/01/Vuei18u/">https://jamescathy.top/2018/10/01/Vuei18u/</a>）</div><div class="post__prevs"><div class="post__prev"></div><div class="post__prev post__prev--right"><a href="/2018/10/01/cssBoxModel/" title="Css盒子模型">Css盒子模型<i class="iconfont icon-next"></i></a></div></div></div></article><div id="comment-container"></div></div><aside class="page__sidebar"><form id="page-search-from" class="page__search-from" action="/search/"><label class="search-form__item"><input class="input" type="text" name="search" placeholder="Search..."> <i class="iconfont icon-search"></i></label></form><div style="margin:30px 0 0 0"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="450" src="//music.163.com/outchain/player?type=0&id=2220579313&auto=1&height=430"></iframe></div><div class="sidebar__block"><h3 class="block__title">简介</h3><p class="block__text">欢迎来到James的博客,这里会分享日常学习工作生活中的点点滴滴,希望能让你有所收获~!</p></div><div class="sidebar__block"><h3 class="block__title">文章分类</h3><ul class="block-list"><li class="block-list-item"><a class="block-list-link" href="/categories/vue/">vue</a><span class="block-list-count">1</span></li><li class="block-list-item"><a class="block-list-link" href="/categories/eth/">eth</a><span class="block-list-count">3</span></li><li class="block-list-item"><a class="block-list-link" href="/categories/css-html/">css+html</a><span class="block-list-count">1</span></li><li class="block-list-item"><a class="block-list-link" href="/categories/css/">css</a><span class="block-list-count">2</span></li><li class="block-list-item"><a class="block-list-link" href="/categories/copay/">copay</a><span class="block-list-count">1</span></li></ul></div><div class="sidebar__block"><h3 class="block__title">最新文章</h3><ul class="block-list latest-post-list"><li class="latest-post-item"><a href="/2018/10/01/css_triangle/" title="忍法丶Css三角形绘画术"><div class="item__cover"><img src="http://p8i3gdhi6.bkt.clouddn.com/triangle_2.png" alt="忍法丶Css三角形绘画术"></div><div class="item__info"><h3 class="item__title">忍法丶Css三角形绘画术</h3><span class="item__text">2018-10-01</span></div></a></li><li class="latest-post-item"><a href="/2018/10/01/ethwallet(2)/" title="ETH钱包备份及导入"><div class="item__cover"><img src="http://cdn.huodongxing.com/file/20150815/119E53CF55A897EBBFF01476D68A1A31AE/30653022772234638.jpg" alt="ETH钱包备份及导入"></div><div class="item__info"><h3 class="item__title">ETH钱包备份及导入</h3><span class="item__text">2018-10-01</span></div></a></li><li class="latest-post-item"><a href="/2018/10/01/ethwallet(3)/" title="ETH钱包导入功能(详解)"><div class="item__cover"><img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1446021051,2508552192&fm=26&gp=0.jpg" alt="ETH钱包导入功能(详解)"></div><div class="item__info"><h3 class="item__title">ETH钱包导入功能(详解)</h3><span class="item__text">2018-10-01</span></div></a></li><li class="latest-post-item"><a href="/2018/10/01/ethwallet(1)/" title="简单创建ETH钱包"><div class="item__cover"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531818456&di=f35388b692ad8ef1d0d3bbcc7bc22a30&imgtype=jpg&er=1&src=http%3A%2F%2Fn1.itc.cn%2Fimg8%2Fwb%2Fsmccloud%2F2015%2F07%2F24%2F143771973369960292.JPEG" alt="简单创建ETH钱包"></div><div class="item__info"><h3 class="item__title">简单创建ETH钱包</h3><span class="item__text">2018-10-01</span></div></a></li></ul></div><div class="sidebar__block"><h3 class="block__title">文章标签</h3><ul class="block-list tag-list clearfix"><li class="tag-item"><a class="tag-link" href="/tags/btc/">btc</a></li><li class="tag-item"><a class="tag-link" href="/tags/copay/">copay</a></li><li class="tag-item"><a class="tag-link" href="/tags/css/">css</a></li><li class="tag-item"><a class="tag-link" href="/tags/eth/">eth</a></li><li class="tag-item"><a class="tag-link" href="/tags/html/">html</a></li><li class="tag-item"><a class="tag-link" href="/tags/javascript/">javascript</a></li><li class="tag-item"><a class="tag-link" href="/tags/vue/">vue</a></li><li class="tag-item"><a class="tag-link" href="/tags/vue-plugin/">vue-plugin</a></li><li class="tag-item"><a class="tag-link" href="/tags/区块链/">区块链</a></li></ul></div></aside></main><footer class="page__footer"><section class="footer__top"><div class="page__container footer__container"><div class="footer-top__item footer-top__item--2"><h3 class="item__title">About</h3><div class="item__content"><p class="item__text">在普遍的众星之中,高人一等的闪亮显眼。</p><ul class="footer__contact-info"><li class="contact-info__item"><i class="iconfont icon-address"></i> <span>Guangzhou, Guangdong Province, China</span></li><li class="contact-info__item"><i class="iconfont icon-email2"></i> <span>jamessupermail@163.com</span></li></ul></div></div><div class="footer-top__item footer__image"><img src="http://p8i3gdhi6.bkt.clouddn.com/Me-YiJia.jpg" alt="logo" title="James"></div><div class="footer-top__item"><h3 class="item__title">Links</h3><div class="item__content"><ul class="footer-top__list"><li class="list-item"><a href="https://geewer.github.io/" title="Geewer" target="_blank">Geewer</a></li></ul></div></div><div class="footer-top__item"><h3 class="item__title">Build</h3><div class="item__content"><ul class="footer-top__list"><li class="list-item"><a href="https://hexo.io/" title="Blog Framework" target="_blank">Hexo</a></li></ul></div></div></div></section><section class="footer__bottom"><div class="page__container footer__container"><p class="footer__copyright">© <a href="https://github.com/jameszzX" target="_blank">James</a> 2018 powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p><ul class="footer__social-network clearfix"><li class="social-network__item"><a href="https://github.com/jameszzX" target="_blank" title="github"><i class="iconfont icon-github"></i></a></li><li class="social-network__item"><a href="jamessupermail@163.com" target="_blank" title="email"><i class="iconfont icon-email"></i></a></li><li class="social-network__item"><a href="/atom.xml" target="_blank" title="rss"><i class="iconfont icon-rss"></i></a></li><li class="social-network__item"><a href="http://weibo.com/jamesiCathy" target="_blank" title="weibo"><i class="iconfont icon-weibo"></i></a></li></ul></div></section></footer><div id="back-top" class="back-top back-top--hidden js-hidden"><i class="iconfont icon-top"></i></div></div><script src="/js/common.js"></script><script src="/js/page/post.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script src="/js/md5.min.js"></script><script>var tags=["vue","javascript","vue-plugin"],gitalk=new Gitalk({clientID:"6360c7ce1d4c3d7a4e1a",clientSecret:"73a2104bb2fc28e1d087c61db337f88d1747e17d",repo:"jameszzX.github.io",owner:"jameszzX",admin:["jameszzX"],labels:tags,id:new Date(1538367158202).getTime()>new Date("2018-02-15").getTime()?md5(location.href):location.href});gitalk.render("comment-container")</script><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></body></html>
